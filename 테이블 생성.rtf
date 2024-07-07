@@ -1,0 +1,118 @@
+{\rtf1\ansi\ansicpg949\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset129 AppleSDGothicNeo-Medium;\f1\fnil\fcharset129 GyeonggiTitleMOTF;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12380\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 1. \'be\'d7\'bc\'c7, 2. \'b5\'e5\'b6\'f3\'b8\'b6, 3. \'b9\'cc\'bd\'ba\'c5\'d7\'b8\'ae, 4. \'b9\'c2\'c1\'f6\'c4\'c3, 5. \'b7\'ce\'b8\'c7\'bd\'ba, 6. SF, 7. \'b0\'f8\'c6\'f7, 8. \'be\'d6\'b4\'cf\'b8\'de\'c0\'cc\'bc\'c7, 9. \'c4\'da\'b9\'cc\'b5\'f0, 10. \'c6\'c7\'c5\'b8\'c1\'f6
+\fs36 \
+ \'bf\'b5\'c8\'ad\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf0 \expnd0\expndtw0\kerning0
+CREATE TABLE genre (\
+  genre_id INT AUTO_INCREMENT PRIMARY KEY,\
+  genre_name CHAR(6) NOT NULL\
+);\
+\
+INSERT INTO genre (genre_name)\
+VALUES ('\'be\'d7\'bc\'c7'), ('\'b5\'e5\'b6\'f3\'b8\'b6'), ('\'b9\'cc\'bd\'ba\'c5\'d7\'b8\'ae'), ('\'b9\'c2\'c1\'f6\'c4\'c3'), ('\'b7\'ce\'b8\'c7\'bd\'ba'), ('SF'), ('\'b0\'f8\'c6\'f7'), ('\'be\'d6\'b4\'cf\'b8\'de\'c0\'cc\'bc\'c7'), ('\'c4\'da\'b9\'cc\'b5\'f0'), ('\'c6\'c7\'c5\'b8\'c1\'f6');\
+\
+CREATE TABLE movies (\
+  movie_id INT AUTO_INCREMENT PRIMARY KEY,\
+  fk_genre_id INT NOT NULL,\
+  movie_name VARCHAR(20) NOT NULL,\
+  age VARCHAR(10) NOT NULL,\
+  years INT NOT NULL,\
+  months INT NOT NULL,\
+  likes INT DEFAULT 0 NOT NULL,\
+  screen CHAR(3) DEFAULT 'END' NOT NULL,\
+  OTT VARCHAR(10) NOT NULL,\
+  FOREIGN KEY (fk_genre_id) REFERENCES genre(genre_id)\
+);\
+\
+INSERT INTO movies (fk_genre_id, movie_name, age, years, months, likes, screen, OTT)\
+VALUES  \
+ (7, '\'b1\'d7\'b0\'cd', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2016, 9, 1390, 'END', 'COP'),\
+ (3, '\'b0\'ee\'bc\'ba', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2016, 5, 8200, 'END', 'DPL'),\
+ (6, '\'b5\'e1:\'c6\'c4\'c6\'ae2', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2024, 2, 5430, 'END', 'COP'),\
+ (9, '\'c0\'b0\'bb\'e7\'bf\'c0', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2022, 8, 4520, 'END', 'DPL'),\
+ (9, '\'b1\'d8\'c7\'d1\'c1\'f7\'be\'f7', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2019, 1, 15430, 'END', 'NET'),\
+ (10, '\'bd\'c5\'b0\'fa\'c7\'d4\'b2\'b2-\'c1\'cb\'bf\'cd\'b9\'fa', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2016, 12, 5339, 'END', 'NET'),\
+ (4, '\'b9\'b0\'b6\'fb\'b7\'e7\'c1\'ee', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2001, 10, 7430, 'END', 'DPL'),\
+ (2, '\'b1\'e2\'bb\'fd\'c3\'e6', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2019, 5, 16230, 'END', 'ATV'),\
+ (10, '\'ba\'f1\'c6\'b2\'c1\'ea\'bd\'ba2', '\'c0\'fc\'c3\'bc\'b0\'fc\'b6\'f7\'b0\'a1\'b4\'c9', 2024, 9, 0, 'REL', 'TBD'),\
+ (1, '\'b9\'cc\'bc\'c7 \'c0\'d3\'c6\'c4\'bc\'ad\'ba\'ed8', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2025, 5, 0, 'REL', 'TBD'),\
+ (5, '\'be\'ee\'b9\'d9\'bf\'f4\'c5\'b8\'c0\'d3', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2013, 12, 9800, 'END', 'NET'),\
+ (7, '\'c4\'c1\'c0\'fa\'b8\'b5', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2013, 9, 5430, 'END', 'NET'),\
+ (5, '\'c5\'b8\'c0\'cc\'c5\'b8\'b4\'d0', '15\'bc\'bc \'c0\'cc\'bb\'f3', 1998, 2, 10460, 'END', 'DPL'),\
+ (8, '\'bd\'ba\'c1\'ee\'b8\'de\'c0\'c7 \'b9\'ae\'b4\'dc\'bc\'d3', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2023, 3, 9760, 'END', 'COP'),\
+ (2, '\'bc\'ad\'bf\'ef\'c0\'c7 \'ba\'bd', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2023, 11, 11000, 'END', 'NET'),\
+ (6, '\'c5\'a9\'b8\'ae\'bf\'a1\'c0\'cc\'c5\'cd', '12\'bc\'bc \'c0\'cc\'bb\'f3', 2023, 10, 4520, 'END', 'DPL'),\
+ (8, '\'c0\'ce\'bb\'e7\'c0\'cc\'b5\'e5\'be\'c6\'bf\'f42\'a1\'af, '\'c0\'fc\'c3\'bc\'b0\'fc\'b6\'f7\'b0\'a1\'b4\'c9', 2024, 6, 9025, 'NOW', 'DPL'),\
+ (1, '\'b9\'fc\'c1\'cb\'b5\'b5\'bd\'c34', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2024, 4, 16000, 'NOW', 'COP'),\
+ (3, '\'c6\'c4\'b9\'a6', '15\'bc\'bc \'c0\'cc\'bb\'f3', 2024, 2, 12560, 'END', 'ATV'),\
+\pard\tx3977\pardeftab720\partightenfactor0
+
+\f1 \cf0  (4, '\'bf\'fd\'c4\'ab', '\'c0\'fc\'c3\'bc\'b0\'fc\'b6\'f7\'b0\'a1\'b4\'c9', 2024, 1, 6020, 'END', 'COP');
+\f0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+CREATE TABLE businesses (\
+  business_id INT AUTO_INCREMENT PRIMARY KEY,\
+  fk_movie_id INT NOT NULL,\
+  business_name VARCHAR(20) NOT NULL,\
+  FOREIGN KEY (fk_movie_id) REFERENCES movies(movie_id)\
+);\
+\
+INSERT INTO businesses (fk_movie_id, business_name)\
+VALUES  \
+  (10, '\'b7\'d4\'b5\'a5'), \
+  (18, '\'c7\'c3\'b7\'af\'bd\'ba\'bf\'a5'), \
+  (15, '\'c7\'c3\'b7\'af\'bd\'ba\'bf\'a5'), \
+  (8, 'CJ'), \
+  (19, '\'bc\'ee\'b9\'da\'bd\'ba'), \
+  (2, '20\'bc\'bc\'b1\'e2 \'c6\'f8\'bd\'ba'), \
+  (7, '20\'bc\'bc\'b1\'e2 \'c6\'f8\'bd\'ba'), \
+  (20, '\'bf\'f6\'b3\'ca\'ba\'ea\'b6\'f3\'b4\'f5\'bd\'ba'), \
+  (13, '\'bf\'f9\'c6\'ae \'b5\'f0\'c1\'ee\'b4\'cf'), \
+  (11, '\'c0\'af\'b4\'cf\'b9\'f6\'bc\'c8 \'c7\'c8\'c3\'b3\'bd\'ba'), \
+  (3, '\'bf\'f6\'b3\'ca\'ba\'ea\'b6\'f3\'b4\'f5\'bd\'ba'), \
+  (16, '\'bf\'f9\'c6\'ae \'b5\'f0\'c1\'ee\'b4\'cf'), \
+  (12, '\'bf\'f6\'b3\'ca\'ba\'ea\'b6\'f3\'b4\'f5\'bd\'ba'), \
+  (1, '\'bf\'f6\'b3\'ca\'ba\'ea\'b6\'f3\'b4\'f5\'bd\'ba'), \
+  (17, '\'bf\'f9\'c6\'ae \'b5\'f0\'c1\'ee\'b4\'cf'), \
+  (14, '\'bc\'ee\'b9\'da\'bd\'ba'), \
+  (5, 'CJ'), \
+  (4, '\'bd\'ce\'c0\'cc\'b4\'f5\'bd\'ba'), \
+  (6, '\'b7\'d4\'b5\'a5'), \
+  (9, '\'bf\'f6\'b3\'ca\'ba\'ea\'b6\'f3\'b4\'f5\'bd\'ba');\
+\
+CREATE TABLE ratings (\
+  rating_id INT AUTO_INCREMENT PRIMARY KEY,\
+  fk_movie_id INT NOT NULL,\
+  stars TINYINT NOT NULL,\
+  comment VARCHAR(200),\
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\
+  FOREIGN KEY (fk_movie_id) REFERENCES movies(movie_id)\
+);\
+\
+INSERT INTO ratings (fk_movie_id, stars, comment, created)\
+VALUES  \
+  (18, 5, '\'be\'c6\'b4\'c2 \'b8\'c0\'c0\'cc \'c3\'d6\'b0\'ed\'b4\'d9', '2024-04-29'),\
+  (1, 3, '\'b9\'ab\'bc\'b7\'c1\'f6 \'be\'ca\'b0\'ed \'c0\'e7\'b9\'d5\'b0\'d4 \'ba\'bc \'bc\'f6 \'c0\'d6\'b4\'c2 \'bf\'b5\'c8\'ad', '2021-07-01'),\
+  (15, 5, '\'ba\'d0\'b3\'eb\'c1\'f6\'bc\'f6\'b0\'a1 \'bb\'f3\'bd\'c2\'c7\'cf\'b4\'c2 \'bf\'b5\'c8\'ad \'bf\'e5\'c0\'cc \'c0\'da\'b5\'bf\'c0\'b8\'b7\'ce \'b3\'aa\'bf\'c3 \'c1\'a4\'b5\'b5\'b7\'ce \'c3\'e6\'b0\'dd\'c0\'fb', '2023-12-15'),\
+  (13, 2, '\'c5\'ac\'b8\'ae\'bc\'ce \'b0\'a1\'b5\'e6, \'c1\'d6\'c0\'ce\'b0\'f8 \'be\'f3\'b1\'bc\'b8\'b8 \'ba\'b8\'b0\'d4 \'b5\'ca', '2024-02-04'),\
+  (11, 4, '\'b1\'b8\'c0\'db\'c0\'cc \'b8\'ed\'c0\'db \'c8\'c4\'b9\'dd\'ba\'ce\'b7\'ce \'b0\'a5 \'bc\'f6\'b7\'cf \'b8\'f4\'c0\'d4\'b5\'b5 \'bb\'f3\'bd\'c2', '2018-03-04'),\
+  (6, 4, '\'b8\'b9\'c0\'ba \'b0\'cd\'c0\'bb \'bb\'fd\'b0\'a2\'c7\'cf\'b0\'d4 \'c7\'cf\'b4\'c2 \'bf\'b5\'c8\'ad \'b4\'d9\'bd\'c3 \'ba\'c1\'b5\'b5 \'b8\'ed\'c0\'db', '2020-07-06'),\
+  (17, 5, '\'be\'d6\'b5\'e9 \'bf\'b5\'c8\'ad\'b6\'f3\'b0\'ed \'b9\'e6\'bd\'c9\'c7\'df\'b4\'d9\'b0\'a1 \'b8\'f4\'c0\'d4\'b0\'a8 \'c3\'d6\'b0\'ed', '2024-06-22');\
+\
+CREATE TABLE info(\
+  info_id INT AUTO_INCREMENT PRIMARY KEY,\
+  fk_movie_id INT NOT NULL, \
+  producer VARCHAR(10), \
+  main_actor, \
+  sub_actor\
+); }

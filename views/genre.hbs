@@ -1,0 +1,18 @@
+<h1>{{ title }}</h1>
+
+<ul>
+  <img src="/images/main.png" class="main-icon">
+  <li>
+    <a href="biz-simple?genre=">
+      <span>🎥</span> 전체 <span>🎥</span> 
+    </a>
+  </li>
+  {{#each genre}}
+    <li>
+      <a href="biz-simple?genre={{ genre_id }}">
+        <span>{{ icon }}</span>
+        {{ genre_name }} <span>{{ icon }}</span>
+      </a>
+    </li>
+  {{/each}}
+</ul>

@@ -1,0 +1,192 @@
+<h1>
+  {{ biz.icon }} {{ biz.movie_name }} {{ biz.icon }}
+</h1>
+
+<div style="display: flex; align-items: flex-start;">
+<table style="margin-right : 30px;">
+  <thead>
+    <tr>
+      <th colspan="2">
+        <h2>영화 포스터</h2>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="/images/{{ biz.movie_id }}.png" width="200" class="movie-poster">
+              </div>
+              <div class="flip-card-back">
+                <p>출연 정보</p>
+              </div>
+            </div>
+          </div>
+    </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead> 
+    <tr>
+      <th colspan="2"> 
+        <h2>영화 정보</h2> 
+      </th>
+    </tr>
+  </thead>
+  <tbody class="padd"> 
+    <tr>
+      <td class="padd"><b>배급사</td>
+      <td>{{ businessName }}</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>장르</td>
+      <td>{{ biz.genre_name }}</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>관람 등급</td>
+      <td>{{ biz.age }} 가능</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>상영 상태</td>
+      <td>{{ biz.can_screen }}</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>개봉일</td>
+      <td>{{ biz.years }}년  {{ biz.months }} 월</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>OTT</td>
+      <td>{{ biz.ott }}</td>
+    </tr>
+    <tr>
+      <td class="padd"><b>평균 평점</td>
+      <td>{{ avg }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br><br>
+
+<h2>⭐ 평점 ⭐</h2>
+<table>
+  <thead>
+    <tr>
+      <th>좋아요</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          <span>👍 {{ biz.likes }}</span>
+          <button class="small" onclick="putLike({{ biz.movie_id }}, 1)">+</button>
+          <button class="small" onclick="putLike({{ biz.movie_id }}, -1)">-</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>평점</th>
+      <th>코멘트</th>
+      <th colspan="2">일시</th>
+    </tr>
+  </thead>
+  <tbody class="padd">
+    {{#each ratings}}
+      <tr>
+        <td>{{ stars }}</td>
+        <td class="padd">{{ comment }}</td>
+        <td>{{ created_fmt }}</td>
+        <td>
+          <button onclick="removeRating({{ rating_id }})">삭제</button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<br>
+
+<select id="stars">
+  <option value="5">5점</option>
+  <option value="4">4점</option>
+  <option value="3">3점</option>
+  <option value="2">2점</option>
+  <option value="1">1점</option>
+</select>
+<input id="comment" type="text">
+<button onclick="addRating()">올리기</button>
+
+<br><br><br>
+
+<a href="/biz-simple?genre=">
+   ◀️ 영화 목록으로 돌아가기️
+</a>
+
+<script>
+  function putLike (movie_id, like) {
+    if (!confirm('좋아요를 누르시겠습니까?')) return
+    fetch(`/movie/${movie_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        like: like
+      })
+    }).then((response) => response.json()).then(
+      (data) => {
+        if (data[0].affectedRows === 1) {
+          location.reload()
+        } else {
+          alert('오류가 발생했습니다.')
+        }
+      }
+    )
+  }
+
+  function addRating () {
+    fetch(`/ratings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        movie_id: {{ biz.movie_id }},
+        stars: document.getElementById('stars').value,
+        comment: document.getElementById('comment').value,
+      })
+    }).then((response) => response.json()).then(
+      (data) => {
+        console.log(data[0])
+        if (data[0].affectedRows === 1) {
+          location.reload()
+        } else {
+          alert('오류가 발생했습니다.')
+        }
+      }
+    )
+  }
+
+  function removeRating (rating_id) {
+    if (!confirm('이 평점을 삭제하시겠습니까?')) return
+
+    fetch(`/ratings/${rating_id}`, {
+      method: 'DELETE'
+    }).then((response) => response.json()).then(
+      (data) => {
+        console.log(data[0])
+        if (data[0].affectedRows === 1) {
+          location.reload()
+        } else {
+          alert('오류가 발생했습니다.')
+        }
+      }
+    )
+  }
+</script>

@@ -1,0 +1,42 @@
+<h1>{{ item.icon }} {{ title }}</h1>
+
+<a href="/biz-adv?genre=&movie_id=">
+  고급 화면으로 보기 ▶️
+</a>
+<br><br><br>
+
+<table>
+  <thead><link rel="stylesheet" href="styles.css">
+    <tr>
+      <th>영화명</th>
+      <th>장르</th>
+      <th>관람 등급</th>
+      <th>개봉일</th>
+      <th>상영 상태</th>
+      <th>OTT</th>
+    </tr>
+  </thead>
+  <tbody class="padd">
+    {{#each movies}}
+      <tr>
+        <td> {{movie_name}} </td>
+        <td> {{genre_name}} </td>
+        <td> {{age}} </td>
+        <td> {{years}}년 {{months}} 월</td>
+        <td> {{can_screen}} </td>
+        <td class="padd"> {{ott}} </td>
+        <td>
+          <a href="/movie/{{ movie_id }}">
+            상세히
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<br><br>
+
+<a href="/">
+   ◀️ 전체 장르 목록으로 돌아가기️
+</a>

@@ -1,0 +1,90 @@
+<h1>{{ title }}</h1>
+
+<a href="/biz-simple?genre={{ q.genre }}">
+  단순 화면으로 보기 ▶️
+</a>
+
+<br><br><br>
+
+<form action="/biz-adv">
+  <select name="order">
+    <option value="">전체</option>
+    <option value="movie_name">영화명</option>
+    <option value="genre_name">장르</option>
+    <option value="age">나이</option>
+    <option value="screen">상영 상태</option>
+    <option value="OTT">ott</option>
+  </select>
+  <select name="genre">
+    <option value="">전체 장르</option>
+    <option value="1">액션</option>
+    <option value="2">드라마</option>
+    <option value="3">미스테리</option>
+    <option value="4">뮤지컬</option>
+    <option value="5">로맨스</option>
+    <option value="6">SF</option>
+    <option value="7">공포</option>
+    <option value="8">애니메이션</option>
+    <option value="9">코미디</option>
+    <option value="10">판타지</option>
+  </select>
+  <select name="age">
+    <option value="">관람 제한 등급</option>
+    <option value="전체 관람">전체 관람 가능</option>
+    <option value="12세 이상">12세 이상</option>
+    <option value="15세 이상">15세 이상</option>
+    <option value="청소년 관람 불가">청소년 관람 불가</option>
+  </select>
+  <select name="screen">
+    <option value="">상영 상태</option>
+    <option value="NOW">상영중</option>
+    <option value="END">종영</option>
+    <option value="REL">개봉예정</option>
+  </select>
+  <select name="OTT">
+    <option value="">OTT전체</option>
+    <option value="NET">Netflix</option>
+    <option value="DPL">Disney+</option>
+    <option value="ATV">AppleTV</option>
+    <option value="COP">쿠팡플레이</option>
+  </select>
+  <input type="submit" value="검색">
+</form>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>영화명</th>
+      <th>장르</th>
+      <th>관람 등급</th>
+      <th>상영 상태</th>
+      <th>OTT</th>
+      <th>개봉일</th>
+    </tr>
+  </thead>
+  <tbody class="padd">
+    {{#each movies}}
+      <tr>
+        <td>{{movie_name}}</td>
+        <td>{{genre_name}}</td>
+        <td>{{age}}</td>
+        <td>{{can_screen}}</td>
+        <td class="padd">{{ott}}</td>
+        <td class="padd"> {{years}}년 {{months}} 월</td>
+        <td>
+           <a href="/movie/{{ movie_id }}">
+            상세히
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<br><br>
+
+<a href="/">
+   ◀️ 전체 장르 목록으로 돌아가기️
+</a>
